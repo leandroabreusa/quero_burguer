@@ -1,0 +1,56 @@
+{strip}
+{* Order data *}
+<div id="order-data" class="row">
+    {* Order number *}
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 form-group has-float-label">
+        <div class="input-group">
+            <input id="user-id" type="text" class="form-control" value="" readonly>
+            <label>Comprador</label>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 form-group has-float-label">
+        <div class="input-group">
+            <input id="situation" type="text" class="form-control" value="" readonly>
+            <label>Status</label>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 form-group has-float-label">
+        <div class="input-group">
+            <input id="total-value" type="text" class="form-control" value="" readonly>
+            <label>Valor Total</label>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 form-group has-float-label">
+        <div class="input-group">
+            <input id="payment" type="text" class="form-control" value="" readonly>
+            <label>Forma de pagamento</label>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-4 form-group has-float-label">
+        <div class="input-group">
+            <input id="address" type="text" class="form-control" value="" readonly>
+            <label>Endereço</label>
+        </div>
+    </div>
+</div>
+
+{* Order items *}
+<div class="row reducible">
+    <div class="col-xs-12">
+        <h4><i class="fa fa-list-alt text-purple"></i> Itens do pedido</h4>
+
+        <table id="order-products" class="table table-bordered table-condensed table-hover">
+            <thead class="bg-gray">
+                <tr>
+                    <th>ID</th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th>Observações</th>
+                </tr>
+            </thead>
+
+            <tbody></tbody>
+        </table>
+    </div>
+</div>

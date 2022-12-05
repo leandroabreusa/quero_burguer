@@ -1,0 +1,47 @@
+{strip}
+{assign module 'orders'}
+{include './_include/default.tpl.html'
+    pageTitle = 'Pedidos'
+    windowName = 'Pedidos'
+    windowIcon = 'shopping-bag'
+    activeMenu = '#menuItemFinancial #menuItemOrderUsers'
+    search = ['placeholder' => 'Buscar...']
+    admModule = [
+        'name' => $module,
+        'table' => [
+            'enabled' => true,
+            'filter' => false,
+            'commands' => [
+                'new' => false
+            ]
+        ],
+        'form' => [
+            'enabled' => true,
+            'save' => false,
+            'commands' => [
+                'approve' => [
+                    'icon' => 'truck',
+                    'text' => 'Enviar',
+                    'hidable' => true
+                ],
+                'done' => [
+                    'icon' => 'check',
+                    'text' => 'Concluir',
+                    'hidable' => true
+                ],
+                'cancel' => [
+                    'icon' => 'times',
+                    'text' => 'Cancelar',
+                    'hidable' => true
+                ]
+            ],
+            'forms' => [
+
+            ]
+        ]
+    ]
+    plugins = [
+        'inputmask',
+        'select2'
+    ]
+}

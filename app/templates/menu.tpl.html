@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+{strip}
+{$appController=[
+    controller => "{assetFile file='app/site/menu.js'}",
+    options    => []
+]}
+{$plugins=[
+    'bootstrap',
+    'inputmask'
+]}
+<html>
+{include "./_include/head.tpl.html" nocache}
+<body>
+    {include "./_include/navigation.tpl.html" nocache}
+    <div id="menu-box">
+        <div class="container">
+            <nav id="menu-navigation" class="navbar justify-content-center navbar-light text-bg-secondary">
+                <div class="container-fluid">
+                    <a class="navbar-brand menu-nav-item" href="#meal">Hambúrgueres</a>
+                    <a class="navbar-brand menu-nav-item" href="#side-dish">Acompanhamentos</a>
+                    <a class="navbar-brand menu-nav-item" href="#drinks">Bebidas</a>
+                </div>
+            </nav>
+        </div>
+        <div id="menu" class="container d-flex flex-wrap text-bg-secondary">
+            <h2 id="meal" class="menu-categories">Hambúrgueres</h2>
+            <div class="container d-flex flex-wrap">
+                <div class="col d-flex flex-wrap">
+                    {foreach $products as $product}
+                        {if $product.type == 1}
+                            <div class="prod-box" class="col" data-id="{$product.id}">
+                                <a class="prod-cont" href="#">
+                                    <div class="row">
+                                            <img class="prod-img" src="{assetFile file="productImages/{$product.path}"}">
+                                    </div>
+                                    <div class="row">
+                                            <p>{$product.description}</p>
+                                    </div>
+                                    <div class="row">
+                                        <div id="prod-menu" class="d-flex justify-content-between">
+                                            <p class="prod-price">Preço: R$ {$product.price}
+                                            <button class="buy-btn"
+                                                    data-id="{$product.id}"
+                                                    data-price="{$product.price}"
+                                                    data-desc="{$product.description}"
+                                                    data-img="{assetFile file="productImages/{$product.path}"}"
+                                                    data-name="{$product.name}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal">Comprar</button>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {/if}
+                    {/foreach}
+                </div>
+            </div>
+
+
+            <h2 id="side-dish" class="menu-categories">Acompanhamentos</h2>
+            <div class="container d-flex flex-wrap">
+                <div class="col d-flex flex-wrap">
+                    {foreach $products as $product}
+                        {if $product.type == 2}
+                            <div class="prod-box" class="col" data-id="{$product.id}">
+                                <a class="prod-cont" href="#">
+                                    <div class="row">
+                                            <img class="prod-img" src="{assetFile file="productImages/{$product.path}"}">
+                                    </div>
+                                    <div class="row">
+                                            <p>{$product.description}</p>
+                                    </div>
+                                    <div class="row">
+                                        <div id="prod-menu" class="d-flex justify-content-between">
+                                            <p class="prod-price">Preço: R$ {$product.price}
+                                            <button class="buy-btn"
+                                                    data-id="{$product.id}"
+                                                    data-price="{$product.price}"
+                                                    data-desc="{$product.description}"
+                                                    data-img="{assetFile file="productImages/{$product.path}"}"
+                                                    data-name="{$product.name}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal">Comprar</button>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {/if}
+                    {/foreach}
+                </div>
+            </div>
+            <h2 id="drinks" class="menu-categories">Bebidas</h2>
+            <div class="container d-flex flex-wrap">
+                <div class="col d-flex flex-wrap">
+                    {foreach $products as $product}
+                        {if $product.type == 3}
+                            <div class="prod-box" class="col" data-id="{$product.id}">
+                                <a class="prod-cont" href="#">
+                                    <div class="row">
+                                            <img class="prod-img" src="{assetFile file="productImages/{$product.path}"}">
+                                    </div>
+                                    <div class="row">
+                                            <p>{$product.description}</p>
+                                    </div>
+                                    <div class="row">
+                                        <div id="prod-menu" class="d-flex justify-content-between">
+                                            <p class="prod-price">Preço: R$ {$product.price}
+                                            <button class="buy-btn"
+                                                    data-id="{$product.id}"
+                                                    data-price="{$product.price}"
+                                                    data-desc="{$product.description}"
+                                                    data-img="{assetFile file="productImages/{$product.path}"}"
+                                                    data-name="{$product.name}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal">Comprar</button>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {/if}
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" id="teste">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card shadow-sm">
+                        <img class="bd-placeholder-img card-img-top" width="100%" src="">
+                        <div class="card-body pb-0">
+                            <p class="card-text"></p>
+                            <div class="d-flex justify-content-between align-items-center my-4">
+                                <form id="prod-form" class="form-group w-100">
+                                    <div class="col-2 mb-2">
+                                        <label for="qttyInp">Quantidade</label>
+                                        <input type="number" class="form-control" data-input="number" id="qttyInp" value="1" min="1" max="99">
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <label for="floatingTextarea2">Observações</label>
+                                        <textarea class="form-control" id="floatingTextarea2" style="height: 100px"></textarea>
+                                    </div>
+
+                                    <button class="w-50 btn btn-primary btn-md mt-3" type="submit"><span id="box-price"></span></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {include "./_include/scripts.tpl.html" nocache}
+    {include "./_include/footer.tpl.html" nocache}
+    <script type="text/javascript">
+        "use strict";
+
+        (function () {
+
+        })();
+
+    </script>
+</body>
