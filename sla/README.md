@@ -1,4 +1,7 @@
 # MEDIÇÕES DO SLA
+
+OBS: Ambos os serviços possuem uma página HTML com o seu nome gerado por meio do K6 Reporter v2.3.0 - Ben Coleman 2021
+
 ## Menu/Cardápio
 Tipo de operação: leitura
 
