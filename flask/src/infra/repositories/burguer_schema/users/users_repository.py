@@ -15,44 +15,51 @@ class UsersRepository(UsersRepositoryInterface):
         self.collection = "users"
 
     def insert_error(self, users_data: dict) -> Union[dict, bool]:
-        user = self.no_relational_db.find_specific_database(str(os.environ.get("MONGO_DATABASE")), self.collection, {"relational_db_id": users_data["relational_db_id"]})
+        user = self.no_relational_db.find(self.collection, {"relational_db_id": users_data["relational_db_id"]})
 
         if user:
-            user = user[0]
-
             error_number = len(user["email_errors"]) + 1
 
-            users_data["email_error"]["error_number"] = error_number
-            users_data["email_error"]["created_at"] = datetime.datetime.utcnow()
-            users_data["email_error"]["updated_at"] = datetime.datetime.utcnow()
+            error_update = users_data["email_errors"][0]
 
-            user["email_errors"].append(users_data["email_error"])
+            error_update["error_number"] = error_number
+            error_update["created_at"] = datetime.datetime.utcnow()
+            error_update["updated_at"] = datetime.datetime.utcnow().timestamp()
 
-            return self.no_relational_db.update_specific_database(
-                str(os.environ.get("MONGO_DATABASE")), 
+            return self.no_relational_db.update(
                 self.collection, 
-                { {"relational_db_id": users_data["relational_db_id"]} },
+                {"relational_db_id": users_data["relational_db_id"]},
                 { 
-                    "$set": { "email_errors": user["email_errors"] }  
+                    "$set": { 
+                        f"email_errors.{error_number-1}.error_number": error_update["error_number"],
+                        f"email_errors.{error_number-1}.error_type": error_update["error_type"],
+                        f"email_errors.{error_number-1}.error_at": error_update["error_at"],
+                        f"email_errors.{error_number-1}.status_code": error_update["status_code"],
+                        f"email_errors.{error_number-1}.reason": error_update["reason"],
+                        f"email_errors.{error_number-1}.created_at": error_update["created_at"],
+                        f"email_errors.{error_number-1}.updated_at": error_update["updated_at"],
+                        f"email_errors.{error_number-1}.email": error_update["email"],
+                     }  
                 }
             )
         else:
             email_errors = []
 
-            users_data["email_error"]["error_number"] = 1
-            users_data["email_error"]["created_at"] = datetime.datetime.utcnow()
-            users_data["email_error"]["updated_at"] = datetime.datetime.utcnow()
+            error_update = users_data["email_errors"][0]
 
-            email_errors.append(users_data["email_error"])
+            error_update["error_number"] = 1
+            error_update["created_at"] = datetime.datetime.utcnow()
+            error_update["updated_at"] = datetime.datetime.utcnow().timestamp()
+
+            email_errors.append(error_update)
 
             user = {
-                "relational_db_id":{"$numberInt":f"{users_data['relational_db_id']}"},
-                "uuid":f"{users_data['uuid']}",
+                "relational_db_id": users_data['relational_db_id'],
+                "uuid": users_data['uuid'],
                 "email_errors": email_errors
             }
 
-            return self.no_relational_db.insert_specific_database(
-                str(os.environ.get("MONGO_DATABASE")),
+            return self.no_relational_db.insert(
                 self.collection,
                 user
             )
