@@ -1,0 +1,5 @@
+.vscode
+.deployment
+__pycache__
+instance/.development.env
+venv
