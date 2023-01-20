@@ -21,8 +21,8 @@ Descrição das configurações -> Quantidade de docker's: 1
 
 Testes de carga (SLA):
 - latência: 95º percentil - 13,97 ms
-- vazão: 2543,09 requisições/s -- 152.590 requisições/min
-- concorrência (limite de requisições simultâneas): 2544 requisições
+- vazão: 2543,09 requisições/s -- 152.590 requisições ao longo do teste
+- concorrência (limite de requisições simultâneas): 2543 requisições
     
 Potenciais gargalos do sistema:
 - Pela necessidade de recuperar os produtos guardados na base de dados, a comunicação com o DB MySQL acaba por gerar um pouco de gargalo nesse serviço pela necessidade da execução de um SELECT internamente para ser retornado do back-end ao front-end e, assim, o cliente poder ter acesso aos lanches da Quero Burguer.
@@ -35,11 +35,11 @@ Descrição das configurações -> Quantidade de docker's: 1
 
 Testes de carga (SLA):
 - latência: 95º percentil - 11 ms
-- vazão: 2.041 requisições/s -- 124.528 requisições/min
+- vazão: 2.041 requisições/s -- 124.528 requisições ao longo do teste
 - concorrência (limite de requisições simultâneas): 2.690 requisições
 
 GRÁFICOS comparativos das medições feitas:
-- Os gráficos estão na pasta "segundo-teste", que possui o gráfico para cada um dos dois testes realizados.
+- Os gráficos estão na pasta "segundo-teste", que possui os arquivos PDF com as métricas e os gráficos para cada um dos serviços que os testes foram executados.
 
 Melhorias/otimizações:
 - Como esse serviço já foi aprimorado durante a realização de PCS no período passado, acabou que não teve nada para ser alterado,
@@ -64,7 +64,7 @@ Descrição das configurações -> Quantidade de docker's: 1
 
 Testes de carga (SLA):
 - latência: 95º percentil - 1.287,63 ms
-- vazão: 17,81 requisições/s -- 1,069 requisições/min
+- vazão: 17,81 requisições/s -- 1,069 requisições ao longo do teste
 - concorrência (limite de requisições simultâneas): 18 requisições
 
 Potenciais gargalos do sistema:
@@ -78,11 +78,11 @@ Descrição das configurações -> Quantidade de docker's: 1
 
 Testes de carga (SLA):
 - latência: 95º percentil - 1.079 ms
-- vazão: 19 requisições/s -- 1.118 requisições/min
-- concorrência (limite de requisições simultâneas): 20 requisições
+- vazão: 19 requisições/s -- 1.118 requisições ao longo do teste
+- concorrência (limite de requisições simultâneas): 19 requisições
 
 GRÁFICOS comparativos das medições feitas:
-- Os gráficos estão na pasta "segundo-teste", que possui o gráfico para cada um dos dois testes realizados.
+- Os gráficos estão na pasta "segundo-teste", que possui os arquivos PDF com as métricas e os gráficos para cada um dos serviços que os testes foram executados.
 
 Melhorias/otimizações:
 - Como esse serviço já foi aprimorado durante a realização de PCS no período passado, acabou que não teve nada para ser alterado,
