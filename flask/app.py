@@ -17,5 +17,5 @@ CORS(app)
 # Register the main route blueprint
 register_routes.execute(app)
 
-http_server = WSGIServer(('127.0.0.1', 5000), app)
+http_server = WSGIServer(('', 5000), app)
 http_server.serve_forever()

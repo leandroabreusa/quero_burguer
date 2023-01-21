@@ -36,12 +36,6 @@
             error: () => {
             }
         });
-
-        let url = 'http://127.0.0.1:5000/delivery_fee/';
-        let xhr = new XMLHttpRequest();
-        xhr.open('PUT', url, true);
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        xhr.send(JSON.stringify({ "value": $('#edit-delivery').val()}));
     });
 
     /**

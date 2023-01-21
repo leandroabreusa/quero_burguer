@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `situation` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `name` varchar(150) NOT NULL,
   `description` varchar(300) NOT NULL,
-  `path` varchar(150) NOT NULL,
+  `url` varchar(150) NOT NULL,
   `price` decimal(10,2) unsigned NOT NULL,
   `deleted` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 -- Copiando dados para a tabela burguer.products: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` (`id`, `type`, `situation`, `name`, `description`, `path`, `price`, `deleted`) VALUES
+INSERT INTO `products` (`id`, `type`, `situation`, `name`, `description`, `url`, `price`, `deleted`) VALUES
 	(1, 1, 1, 'Burguer', 'Pão, carne, queijo e molho especial', 'ham2.jpg', 18.50, 0),
 	(2, 1, 1, 'Burgão', 'Pão, duas carnes, muito quero e pouco molho especial', 'indian.jpg', 20.50, 0),
 	(3, 1, 1, 'Burguinho', 'Pra quem tem pouca fome', 'maxresdefault.jpg', 13.00, 0),
