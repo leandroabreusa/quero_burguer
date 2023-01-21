@@ -17,12 +17,19 @@ class DeliveryFeeRepository(DeliveryFeeRepositoryInterface):
     def update(self, value: float) -> Union[dict, bool]:
         date = datetime.datetime.utcnow()
 
+        self.no_relational_db.update(
+            self.collection, 
+            { "selected_fee": 1 },
+            { 
+                "$set": { "fee_at": date }
+            }
+        )
+
         return self.no_relational_db.update(
             self.collection, 
             { "selected_fee": 1 },
             { 
-                "$set": { "value": Decimal128(str(value)) },
-                "$setOnInsert": { "fee_at": date }  
+                "$set": { "value": Decimal128(str(value)) } 
             }
         )
 
