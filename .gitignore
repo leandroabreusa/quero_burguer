@@ -2,3 +2,4 @@
 /var/compiled/*.php
 /vendor/*
 /docker/burguer.env
+.vscode

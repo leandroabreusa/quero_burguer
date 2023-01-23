@@ -1,5 +1,4 @@
 from pymongo import MongoClient, database
-from pymongo.server_api import ServerApi
 from typing import Any
 from src.infra.database.no_relational.no_relational_database import (
     NoRelationalDatabase,
